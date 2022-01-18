@@ -3,6 +3,8 @@ from dotenv import load_dotenv
 import requests
 import os
 import time
+from app import getText
+
 load_dotenv()
 
 secret_code = os.getenv('BOTSECURETOKEN');
@@ -20,7 +22,6 @@ lastmessage = ""
 response = {};
 
 while True:
-    from app import getText
     finalOutput = getText()
     print("lastmessage= " + lastmessage)
     print("finalOUtput= " + finalOutput)
