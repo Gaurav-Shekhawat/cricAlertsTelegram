@@ -18,12 +18,14 @@ currentLive = isLive[0];
 matchId = currentLive['objectId']
 seriesId = currentLive['scribeId']
 
+
 firstLiveMatchAPILink = "https://hs-consumer-api.espncricinfo.com/v1/pages/match/details?lang=en&seriesId=" + str(seriesId) + "&matchId=" + str(matchId) + "&latest=true";
-newResponse = requests.get(firstLiveMatchAPILink);
-ballTitle = newResponse.json()['recentBallCommentary']['ballComments'][0]['title']
-ballRuns = newResponse.json()['recentBallCommentary']['ballComments'][0]['totalRuns']
-ballNumber = newResponse.json()['recentBallCommentary']['ballComments'][0]['oversActual']
 
-finalOutput = str(ballNumber) + " - " + ballTitle + ", " + str(ballRuns) + " runs";
-print(finalOutput)
-
+def getText():
+    newResponse = requests.get(firstLiveMatchAPILink);
+    lastBallComment = newResponse.json()['recentBallCommentary']['ballComments'][0]
+    ballTitle = lastBallComment['title']
+    ballRuns = lastBallComment['totalRuns']
+    ballNumber = lastBallComment['oversActual']
+    finalOutput = str(ballNumber) + " - " + ballTitle + ", " + str(ballRuns) + " runs";
+    return finalOutput
